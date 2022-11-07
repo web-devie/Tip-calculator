@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <!-- Font settings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Frontend Mentor | Tip calculator app</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <!-- <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style> -->
+  </head>
+  <body>
+    <h1 class="app-name">Spli<br />tter</h1>
+    <section class="tip-section">
+      <div class="bill--container grid grid--2-cols col-gap">
+        <div class="bill--calc-box flex">
+          <div class="bill--inputs flex">
+            <label class="label label--bill">Bill</label>
+            <div class="input--wrapper">
+              <img src="./images/icon-dollar.svg" alt="" />
+              <input class="input--bill" type="text" placeholder="0" />
+            </div>
+          </div>
+
+          <div class="bill--inputs flex">
+            <p class="label label--tip">Select Tip %</p>
+            <div class="tip-buttons grid grid--3-cols">
+              <button class="tip--percent">5%</button>
+              <button class="tip--percent">10%</button>
+              <button class="tip--percent">15%</button>
+              <button class="tip--percent">25%</button>
+              <button class="tip--percent">50%</button>
+            </div>
+          </div>
+
+          <div class="bill--inputs flex">
+            <label class="label label--people">Number of People</label>
+            <div class="input--wrapper input--wrapper-people">
+              <img src="./images/icon-person.svg" alt="" />
+              <input class="input--people" type="text" placeholder="0" />
+            </div>
+          </div>
+        </div>
+        <div class="bill--display-box flex">
+          <div class="display--details">
+            <div class="display--tip">
+              <p class="text--tip">Tip Amount<span> / person</span></p>
+              <p class="price--tip">$0.00</p>
+            </div>
+            <div class="display--total">
+              <p class="text--total">Total <span> / person</span></p>
+              <p class="price--total">$0.00</p>
+            </div>
+          </div>
+
+          <button class="btn--reset">reset</button>
+        </div>
+      </div>
+    </section>
+    <!-- Bill Select Tip % 5% 10% 15% 25% 50% Custom Number of People Tip Amount /
+    person Total / person Reset -->
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+    <script src="./script.js"></script>
+  </body>
+</html>
