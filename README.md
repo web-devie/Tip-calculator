@@ -17,4 +17,4 @@ User Goals:
 
 
 ## Building the project
- 🚀 I have used HTML, CSS and Javasxript 
+ 🚀 I have used HTML, CSS and Javascript 
