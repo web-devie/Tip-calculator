@@ -46,7 +46,7 @@ body {
 .tip-section {
   background-color: hsl(0, 0%, 100%);
   width: 90rem;
-  height: 45rem;
+  height: 47rem;
   margin: 0 auto;
   padding: 3.2rem;
   border-radius: 18px;
@@ -115,6 +115,16 @@ input[type="text"] {
   border-radius: 5px;
   font-size: 2rem;
   padding: 0.85rem;
+}
+.custom--input {
+  font-family: "Space Mono", monospace;
+  width: 11rem;
+  border: none;
+  background-color: hsl(185, 41%, 90%);
+  color: hsl(183, 100%, 15%);
+  font-size: 2rem;
+  border-radius: 5px;
+  padding: 1.2rem 0 1.2rem 1.8rem;
 }
 .active {
   background-color: hsl(172, 67%, 75%);
