@@ -1,5 +1,6 @@
 const billInput = document.querySelector(".input--bill");
 const tipBtns = document.querySelectorAll(".tip--percent");
+const customPercent = document.querySelector(".custom--input");
 const peopleInput = document.querySelector(".input--people");
 const errorMsg = document.querySelector(".err--active");
 const tipPrice = document.querySelector(".price--tip");
@@ -41,6 +42,7 @@ const btnActive = function (currentBtn) {
 tipBtns.forEach(function (btn) {
   btn.addEventListener("click", function () {
     btnActive(btn);
+    customPercent.value = "";
     //These 2 lines below gives the percentage value to calc the bil
     const percentIndex = btn.textContent.indexOf("%");
     tipPercent = Number(btn.textContent.slice(0, percentIndex)) / 100;
@@ -48,6 +50,17 @@ tipBtns.forEach(function (btn) {
     //Calling calculateBill() function
     calculateBill(); // Here, it calculates with peopleVal with 1 as it is default val
   });
+});
+
+/*---------------- Custom percent Logic ----------------- */
+customPercent.addEventListener("input", function () {
+  tipBtns.forEach(function (btn) {
+    if (btn.classList.contains("active")) {
+      btn.classList.remove("active");
+    }
+  });
+  tipPercent = Number(customPercent.value) / 100;
+  calculateBill();
 });
 
 /*---------------- People Logic ----------------- */
