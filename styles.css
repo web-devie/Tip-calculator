@@ -121,6 +121,16 @@ input[type="text"] {
   color: hsla(183, 100%, 15%);
 }
 
+.label-box {
+  display: flex;
+  font-size: 1.5rem;
+  color: tomato;
+  align-items: center;
+  justify-content: space-between;
+}
+.err--active {
+  display: none;
+}
 /* --------- Bill Display -------------- */
 .bill--display-box {
   /* Flex */
@@ -213,5 +223,8 @@ FONT SIZE SYSTEM (px)
   }
   .col-gap {
     row-gap: 4rem;
+  }
+  .attribution {
+    font-size: 11px;
   }
 }

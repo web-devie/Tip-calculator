@@ -1,18 +1,28 @@
-const billAmt = document.querySelector(".input--bill");
+const billInput = document.querySelector(".input--bill");
+const tipBtns = document.querySelectorAll(".tip--percent");
+const peopleInput = document.querySelector(".input--people");
+const errorMsg = document.querySelector(".err--active");
 const tipPrice = document.querySelector(".price--tip");
 const totalPrice = document.querySelector(".price--total");
-
-const totalPeople = document.querySelector(".input--people");
-
 const btnReset = document.querySelector(".btn--reset");
 
-const btnTipsDiv = document.querySelector(".tip-buttons");
+let billVal = 0;
+let totalTip = 0;
+let totalBill = 0;
+let tipPercent = 0.15;
+let peopleVal = 1;
 
-const tipBtns = document.querySelectorAll(".tip--percent");
-const people = totalPeople.value;
+/*---------------- Bill Inpt Logic ----------------- */
+billInput.addEventListener("input", updateBill);
+function updateBill() {
+  //It helps to set the billVal to the user input value
+  billVal = Number(billInput.value);
+}
 
+/*---------------- Tip Buttons Logic ----------------- */
+// Setting the current active button
 const btnActive = function (currentBtn) {
-  tipBtns.forEach(function (tipBtn, i) {
+  tipBtns.forEach(function (tipBtn) {
     if (tipBtn.classList.contains("active")) {
       //   console.log("Prev Active", tipBtn);
       tipBtn.classList.remove("active");
@@ -27,24 +37,88 @@ const btnActive = function (currentBtn) {
   });
 };
 
-const calcBillDetails = (amt, tip, people) => {
-  tipPrice.textContent = `$${Math.round((tip / people) * 100) / 100}`;
-  const totalAmt = amt / people + tip / people;
-  totalPrice.textContent = `$${totalAmt.toFixed(2)}`;
-};
+// Adding event listener for every button
+tipBtns.forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    btnActive(btn);
+    //These 2 lines below gives the percentage value to calc the bil
+    const percentIndex = btn.textContent.indexOf("%");
+    tipPercent = Number(btn.textContent.slice(0, percentIndex)) / 100;
 
-tipBtns.forEach(function (tipBtn) {
-  tipBtn.addEventListener("click", function () {
-    btnActive(tipBtn);
-    const percentIndex = tipBtn.textContent.indexOf("%");
-    const tipPercent = Number(tipBtn.textContent.slice(0, percentIndex)) / 100;
-    const bill = Number(billAmt.value);
-    const people = Number(totalPeople.value);
-    const totalTip = Math.round(bill * tipPercent * 100) / 100;
-    calcBillDetails(bill, totalTip, people);
+    //Calling calculateBill() function
+    calculateBill(); // Here, it calculates with peopleVal with 1 as it is default val
   });
 });
 
+/*---------------- People Logic ----------------- */
+let eventCount;
+//Event listener for people input
+peopleInput.addEventListener("input", updatePeople);
+function updatePeople() {
+  //For bakcspace event that needs to happen after the wrong entry
+  peopleInput.addEventListener("keydown", function (e) {
+    eventCount = 0;
+    if (e.which === 8) {
+      eventCount++;
+      // console.log(eventCount);
+    }
+  });
+  if (Number(peopleInput.value) !== 0) {
+    peopleVal = Number(peopleInput.value); // Updated peopleVal
+    calculateBill(); //After updating people value we again calcualte bill with actual peopleVal.
+  } else {
+    errorMsg.style.display = "block";
+    peopleInput.style.outlineColor = "tomato";
+    if (eventCount === 1) {
+      // console.log(eventCount);
+      errorMsg.style.display = "none";
+      peopleInput.style.outlineColor = "";
+    }
+  }
+}
+
+/*---------------- Bill Calcualtion Logic ----------------- */
+function calculateBill() {
+  // -- Tip calculation --
+  const tip = billVal * tipPercent; //Overall tip calculation
+  totalTip = tip / peopleVal; // tip per person calculation
+  tipPrice.textContent = `$${totalTip.toFixed(2)}`;
+  // -- Bill calculation --
+  totalBill = billVal / peopleVal + totalTip;
+  totalPrice.textContent = `$${totalBill.toFixed(2)}`;
+}
+
+// Resets everything
 btnReset.addEventListener("click", function (e) {
   window.location.reload();
 });
+
+// const setPeopleVal = function () {
+//   if (totalPeople.value > 0) {
+//     peopleVal = Number(totalPeople.value);
+//     return peopleVal;
+//   } else {
+//     return peopleVal;
+//   }
+// };
+// totalPeople.addEventListener("input", setPeopleVal);
+
+// const calcBillDetails = (amt, tip, people) => {
+//   console.log("tot ppl", people);
+//   tipPrice.textContent = `$${Math.round((tip / people) * 100) / 100}`;
+//   const totalAmt = amt / people + tip / people;
+//   totalPrice.textContent = `$${totalAmt.toFixed(2)}`;
+// };
+
+// tipBtns.forEach(function (tipBtn) {
+//   tipBtn.addEventListener("click", function () {
+//     btnActive(tipBtn);
+//     const percentIndex = tipBtn.textContent.indexOf("%");
+//     const tipPercent = Number(tipBtn.textContent.slice(0, percentIndex)) / 100;
+//     bill = Number(billAmt.value);
+//     // const people = Number(totalPeople.value);
+//     totalTip = Math.round(bill * tipPercent * 100) / 100;
+//     setPeopleVal();
+//     setPeopleVal();
+//     calcBillDetails(bill, totalTip, peopleVal);
+//   });
