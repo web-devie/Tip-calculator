@@ -149,6 +149,8 @@ input[type="text"] {
   border-radius: 14px;
   padding: 3.2rem;
   height: 39rem;
+
+  position: relative;
 }
 .display--details {
   display: flex;
@@ -182,6 +184,7 @@ input[type="text"] {
 }
 /* .text--tip .text--total .price--tip .price--total  */
 .btn--reset {
+  /* cursor: pointer; */
   cursor: pointer;
   font-family: "Space Mono", monospace;
   border: none;
@@ -193,7 +196,20 @@ input[type="text"] {
   letter-spacing: 0.2px;
   font-size: 1.6em;
 }
+.reset--btn-overlay {
+  width: 35rem;
+  border-radius: 5px;
+  height: 4.5rem;
+  background-color: hsla(183, 100%, 15%, 0.596);
 
+  position: absolute;
+  bottom: 30px;
+  right: 17px;
+  cursor: not-allowed;
+}
+/* .btn--block {
+  pointer-events: none;
+} */
 /* 
 FONT SIZE SYSTEM (px)
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
@@ -236,5 +252,8 @@ FONT SIZE SYSTEM (px)
   }
   .attribution {
     font-size: 11px;
+  }
+  .reset--btn-overlay {
+    bottom: 28px;
   }
 }
