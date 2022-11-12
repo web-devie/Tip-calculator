@@ -6,6 +6,8 @@ const errorMsg = document.querySelector(".err--active");
 const tipPrice = document.querySelector(".price--tip");
 const totalPrice = document.querySelector(".price--total");
 const btnReset = document.querySelector(".btn--reset");
+const btnOverlay = document.querySelector(".reset--btn-overlay");
+// const
 
 let billVal = 0;
 let totalTip = 0;
@@ -18,6 +20,7 @@ billInput.addEventListener("input", updateBill);
 function updateBill() {
   //It helps to set the billVal to the user input value
   billVal = Number(billInput.value);
+  btnOverlay.style.display = "none";
 }
 
 /*---------------- Tip Buttons Logic ----------------- */
@@ -104,6 +107,7 @@ function calculateBill() {
 // Resets everything
 btnReset.addEventListener("click", function (e) {
   window.location.reload();
+  btnOverlay.style.display = "block";
 });
 
 // const setPeopleVal = function () {
