@@ -253,4 +253,7 @@ FONT SIZE SYSTEM (px)
   .attribution {
     font-size: 11px;
   }
+  .reset--btn-overlay {
+    bottom: 28px;
+  }
 }
